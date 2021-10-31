@@ -1,0 +1,103 @@
+.teacher-addclass-container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    .block-container{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 90%;
+        margin: auto;
+
+        .teacher-addclass-content{
+            display: flex;
+            flex-direction: column;
+            margin-top: 40px;
+            margin-left: 200px;
+
+            .teacher-addclass-form{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-bottom: 30px;
+
+                .teacher-addclass-text{
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 10px;
+
+                    .teacher-addclass-main{
+                        font-size: 34px;
+                        font-family: GMarketSansTTFBold;
+                        color: #32374D;
+                        text-shadow: 1px 1px 3px #32374D;
+                    }
+
+                    p{
+                        font-size: 23px;
+                        font-family: GMarketSansTTFLight;
+                    }
+                }
+            }
+
+            .teacher-addclass-table{
+                border-collapse: collapse;
+                margin: 25px 0;
+                font-size: 0.9em;
+                font-family: sans-serif;
+                min-width: 400px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            }
+
+            .teacher-classlist-table thead tr {
+                background-color: #009879;
+                color: #ffffff;
+                text-align: left;
+            }
+
+            .teacher-classlist-table th, 
+            .teacher-classlist-table td {
+                padding: 12px 15px;
+            }
+
+            .teacher-classlist-table tbody tr {
+                border-bottom: 1px solid #dddddd;
+            }
+            
+            .teacher-classlist-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+            
+            .teacher-classlist-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+            .teacher-classlist-table tbody tr.active-row {
+                font-weight: bold;
+                color: #009879;
+            }
+
+
+                .student-signup-button{
+                    display: flex;
+                    height: fit-content;
+                    
+                    .button-container{
+                        background-color: #F6AD55;
+                        height: 49px;
+                        width: 194px;
+                        border-radius: 40px;
+                        font-family: GmarketSansTTFBold;
+                        color: #FFFFFF;
+                        font-size: 20px;
+                        margin-left: auto;
+                        margin-right: 150px;
+                    }
+                }
+
+
+            }
+    }   
+
+}

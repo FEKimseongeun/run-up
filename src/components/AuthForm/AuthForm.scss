@@ -1,0 +1,22 @@
+.auth-form-component{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 60px;
+
+    .auth-form-main{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        font-size: 20px;
+        width: 220px;
+        margin-right: 35px;
+    } 
+
+
+    .auth-form-essential-mark{
+        color: #FF0000;
+        width: fit-content;
+    }
+}
