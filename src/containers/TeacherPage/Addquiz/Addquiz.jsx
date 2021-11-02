@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import 'antd/dist/antd.css';
 import { TimePicker,Select, Button, Input } from 'antd';
 import moment from 'moment';
@@ -12,7 +12,7 @@ function Addquiz(props) {
 
   return (  
     <Block>
-      <a href="/">
+      <a href="/detail-class">
         <Button>←</Button>
       </a>
       <form onSubmit={props.handleSubmit}>
@@ -42,7 +42,8 @@ function Addquiz(props) {
             name="title"
           />
           <hr></hr>
-          
+            <label>퀴즈 제한시간(분) : </label>
+            <Input defaultValue="1" style={{ width: "50%", margin: "2rem auto" }} />
         
     
         </div>
@@ -55,4 +56,4 @@ function Addquiz(props) {
   );
 }
 
-export default Addquiz
+export default Addquiz;

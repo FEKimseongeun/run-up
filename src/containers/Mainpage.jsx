@@ -27,7 +27,7 @@ const Mainpage = ({match}) => {
             <div className="menuUserSection">
                 홍길동 선생님
                 <Avatar size="large" icon={<UserOutlined />} />
-              <a href="/Teachermypage">설정</a>
+              <a href="/teacher-mypage">설정</a>
               <Button type="primary">로그아웃</Button>
             </div>
           </div>

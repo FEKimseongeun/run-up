@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import Block from "../../../components/Block/Block"
 
 const { TabPane } = Tabs;
-const originData = [];
+// const originData = [];
 const options = [
   {
     value: '가나다',
@@ -31,13 +31,15 @@ function onChange(value) {
   console.log(value);
 }
 
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i.toString(),
-    quiz: `${i}+1은?`,
-    answer: `${i}`
-  });
-}
+// for (let i = 0; i < 100; i++) {
+//   originData.push({
+//     key: i.toString(),
+//     quiz: `${i}+1은?`,
+//     answer: `${i}`
+//   });
+// }
+
+
 const EditableCell = ({
   editing,
   dataIndex,
@@ -73,6 +75,19 @@ const EditableCell = ({
   );
 };
 function Detailclass(props) {
+  const originData = [
+    {
+      key: "0",
+      quiz: `1+1은?`,
+      answer: `2`
+    },
+    {
+      key: "1",
+      quiz: `1+1은?`,
+      answer: `2`
+    }
+  ];
+
   const [form] = Form.useForm();
   const [data, setData] = useState(originData);
   const [editingKey, setEditingKey] = useState("");
