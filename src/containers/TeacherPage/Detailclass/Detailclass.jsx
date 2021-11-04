@@ -4,7 +4,9 @@ import { Link} from "react-router-dom";
 import { Space, Button,Cascader, Tabs,Table, Input, InputNumber, Popconfirm, Form, Typography   } from 'antd';
 import 'antd/dist/antd.css';
 import Block from "../../../components/Block/Block"
+import addClass from "../../../img/addClass.png";
 
+const { Title } = Typography;
 const { TabPane } = Tabs;
 // const originData = [];
 const options = [
@@ -215,11 +217,14 @@ function Detailclass(props) {
   return (
       <Block>
     <div>
-      <div style={{ margin: "2rem auto" }}>
+      <div style={{ margin: "0.5rem auto", marginBottom:"2rem" }}>
         <a href="/">
           <Button type="primary">목록으로 가기</Button>
         </a>
       </div>
+      <img className="add-class" src={addClass} style={{ float: 'left', width:'50px'}}/>
+      <Title >도덕 3반 </Title>
+      <hr></hr>
       <div style={{ textAlign: "left", marginBottom: "5px", display:"flex" , flexDirection: 'row',justifyContent: 'space-between'}}>
             <table>
             <td>{props.classtitle}</td></table>
@@ -227,9 +232,6 @@ function Detailclass(props) {
               <Button>학생 초대</Button>
             </Link>
           </div>
-
-            
-          <hr></hr>
           <Tabs defaultActiveKey="2">
           <TabPane
             tab={

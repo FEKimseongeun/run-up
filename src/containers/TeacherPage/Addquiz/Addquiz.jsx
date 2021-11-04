@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import 'antd/dist/antd.css';
-import { TimePicker,Select, Button, Input } from 'antd';
+import { TimePicker,Select, Button, Input, Tooltip } from 'antd';
 import moment from 'moment';
 import Block from "../../../components/Block/Block";
+import AuthForm from "../../../components/AuthForm/AuthForm";
+import AuthInput from "../../../components/AuthInput/AuthInput";
 
 //const { TextArea } = Input;
 const options = [{ value: '서술형' }, { value: '단답형' }, { value: 'OX' }];
 
-
 function Addquiz(props) {
-
   return (  
     <Block>
       <a href="/detail-class">
@@ -43,6 +43,7 @@ function Addquiz(props) {
           />
           <hr></hr>
             <label>퀴즈 제한시간(분) : </label>
+
             <Input defaultValue="1" style={{ width: "50%", margin: "2rem auto" }} />
         
     

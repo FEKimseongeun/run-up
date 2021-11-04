@@ -246,16 +246,19 @@ const Classlist= () => {
         </div>
           <img className="class-list" src={classList} style={{ float: 'left'}}/>
           <Title >수업리스트</Title>
-        <Table 
+      <hr></hr>
+      <div style={{marginTop:'2rem'}}>
+        <Table
             bordered
             components={components}
             rowClassName={() => "editable-row"}
             dataSource={dataSource}
             columns={columnsData}
-        />
+        /></div>
     </Block>
     </div>
 
   );
+
 }
 export default Classlist;

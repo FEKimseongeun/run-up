@@ -22,7 +22,7 @@ const Mainpage = ({match}) => {
         <nav>
           <div className="menubar">
             <div className="logo">
-              <a href="">RUN-UP</a>
+              <a href="/">RUN-UP</a>
             </div>
             <div className="menuUserSection">
                 홍길동 선생님
