@@ -218,7 +218,7 @@ function Detailclass(props) {
       <Block>
     <div>
       <div style={{ margin: "0.5rem auto", marginBottom:"2rem" }}>
-        <a href="/">
+        <a href="/teacher">
           <Button type="primary">목록으로 가기</Button>
         </a>
       </div>

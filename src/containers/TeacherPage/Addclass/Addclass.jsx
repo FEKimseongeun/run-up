@@ -26,25 +26,13 @@ function Addclass(props) {
 
   const ref = useRef(null);
 
-
-  /*useEffect(() => {
-    if (state.length > 0) ref.focus();
-  }, [state]);*/
-
-  // deletes each input
-  // const deleteObject = index =>
-  //     setState(state.filter((item, i) => i !== index));
-
-
-  //const [value, onChange] = useState('10:00');
-  //var TimePicker = require('react-gradient-timepicker');
   return (  
     <Block>
       <img className="add-class" src={addClass} style={{ float: 'left', width:'50px'}}/>
       <Title >수업 추가</Title>
       <hr></hr>
       <div style={{marginTop:'30px'}}>
-        <a href="/">
+        <a href="/teacher">
           <Button>←</Button>
         </a>
       </div>
