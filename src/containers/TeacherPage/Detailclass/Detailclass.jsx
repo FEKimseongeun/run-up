@@ -218,7 +218,7 @@ function Detailclass(props) {
       <Block>
     <div>
       <div style={{ margin: "0.5rem auto", marginBottom:"2rem" }}>
-        <a href="/teacher">
+        <a href="/teacher/class-list">
           <Button type="primary">목록으로 가기</Button>
         </a>
       </div>
@@ -228,7 +228,7 @@ function Detailclass(props) {
       <div style={{ textAlign: "left", marginBottom: "5px", display:"flex" , flexDirection: 'row',justifyContent: 'space-between'}}>
             <table>
             <td>{props.classtitle}</td></table>
-            <Link to ='/inviteStudent'>
+            <Link to ='/teacher/invite'>
               <Button>학생 초대</Button>
             </Link>
           </div>
@@ -268,7 +268,7 @@ function Detailclass(props) {
       key="2"
     >
       <div>
-          <Link to={`/add-quiz`}>
+          <Link to={`/teacher/add-quiz`}>
             <Button type="primary" style={{ float: 'left', marginBottom:'10px'}}>퀴즈추가</Button>
           </Link>
         </div>

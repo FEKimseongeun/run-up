@@ -5,7 +5,8 @@ import './StudentMainpage.scss'
 import StudentClassList from "./StudentClassList/StudentClassList";
 import StudentAtt from "./StudentAtt/StudentAtt";
 import StudentQuiz from "./StudentQuiz/StudentQuiz";
-
+import StudentClassHistory from "./StudentClassHistory/StudentClassHistory";
+import StudentQuizHistory from "./StudentQuizHistory/StudentQuizHistory";
 
 import 'antd/dist/antd.css';
 import { Avatar, Button } from 'antd';
@@ -37,6 +38,8 @@ const StudentMainpage = ({match}) => {
                 <Route path={`${match.path}/s-classlist`} component={StudentClassList} />
                 <Route path={`${match.path}/att-stu`} component={StudentAtt} />
                 <Route path={`${match.path}/quiz-stu`} component={StudentQuiz}/>
+                <Route path={`${match.path}/s-classhistory`} component={StudentClassHistory}/>
+                <Route path={`${match.path}/s-quizhistory`} component={StudentQuizHistory}/>
             </Switch>
         </div>
     </>

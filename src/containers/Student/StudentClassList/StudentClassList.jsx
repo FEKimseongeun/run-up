@@ -53,8 +53,11 @@ function StudentClassList() {
                                     <Link to="/student/att-stu">
                                         <Button type="default" shape="round" style={{backgroundColor:"#F2AA55", color:"white", float:"right"}}>출석하기</Button>
                                     </Link>
-                                    <Link to="/student-detail-class">
-                                        <Button type="default" shape="round" style={{backgroundColor:"#FFFAF6", float:"right"}}>내 수업 활동</Button>
+                                    <Link to="/student/s-classhistory">
+                                        <Button type="default" shape="round" style={{backgroundColor:"#FFFAF6"}}>수업 활동</Button>
+                                    </Link>
+                                    <Link to="/student/s-quizhistory">
+                                        <Button type="default" shape="round" style={{backgroundColor:"#FFFAF6"}}>퀴즈 활동</Button>
                                     </Link>
                                 </Space>
                             )}

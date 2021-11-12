@@ -121,7 +121,7 @@ const EditableCell = ({
     childNode = (
         
       <Space>
-          <Link to="/detail-class">
+          <Link to="/teacher/detail-class">
             <Button type="text" style={{ float: 'right'}}>출석/퀴즈</Button>
           </Link>
         {isExistData ? (
@@ -240,7 +240,7 @@ const Classlist= () => {
     <div>
     <Block>
         <div>
-          <Link to="/add-class">
+          <Link to="/teacher/add-class">
             <Button type="primary" style={{ float: 'right'}}>수업추가</Button>
           </Link>
         </div>

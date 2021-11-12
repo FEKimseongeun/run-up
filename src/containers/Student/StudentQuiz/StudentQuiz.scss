@@ -1,0 +1,12 @@
+.container {
+  display:flex;
+  align-items: flex-end;
+}
+
+@media (max-width:675px) {
+
+  .container {
+    display:flex;
+    align-items: flex-end;
+  }
+}

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Button, Input, Typography} from 'antd';
-import Addclass from "../Addclass/Addclass";
 import { UserOutlined } from '@ant-design/icons';
 import Block from "../../../components/Block/Block";
 import invite from "../../../img/invite.png";

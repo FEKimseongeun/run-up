@@ -32,7 +32,7 @@ function Addclass(props) {
       <Title >수업 추가</Title>
       <hr></hr>
       <div style={{marginTop:'30px'}}>
-        <a href="/teacher">
+        <a href="/teacher/class-list">
           <Button>←</Button>
         </a>
       </div>

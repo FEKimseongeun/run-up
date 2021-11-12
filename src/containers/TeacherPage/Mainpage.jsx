@@ -19,30 +19,30 @@ const Mainpage = ({match}) => {
 
     console.log(match.path)
     return <>
-        <div className="mainpage-container">
+        <div className="mcontainer">
         <header>
         <nav>
           <div className="menubar">
-            <div className="logo">
-              <a href="/teacher">RUN-UP</a>
+            <div className="logos">
+              <a href="/teacher/class-list">RUN-UP</a>
             </div>
             <div className="menuUserSection">
                 홍길동 선생님
                 <Avatar size="large" icon={<UserOutlined />} />
-              <a href="/teacher-mypage">설정</a>
+              <a href="/teacher/teacher-mypage">설정</a>
               <Button type="primary">로그아웃</Button>
             </div>
           </div>
         </nav>
       </header>
             <Switch>
-                <Route path={`${match.path}teacher`} component={Classlist} />
-                <Route path={`${match.path}add-class`} component={Addclass} />
-                <Route path={`${match.path}add-quiz`} component={Addquiz} />
-                <Route path={`${match.path}update-quiz`} component={Updatequiz} />
-                <Route path={`${match.path}detail-class`} component={Detailclass} />
-                <Route path={`${match.path}teacher-mypage`} component={Teachermypage} />
-                <Route path={`${match.path}invite`} component={InviteStudent} />
+                <Route path={`${match.path}/class-list`} component={Classlist} />
+                <Route path={`${match.path}/add-class`} component={Addclass} />
+                <Route path={`${match.path}/add-quiz`} component={Addquiz} />
+                <Route path={`${match.path}/update-quiz`} component={Updatequiz} />
+                <Route path={`${match.path}/detail-class`} component={Detailclass} />
+                <Route path={`${match.path}/teacher-mypage`} component={Teachermypage} />
+                <Route path={`${match.path}/invite`} component={InviteStudent} />
             </Switch>
         </div>
     </>
