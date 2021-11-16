@@ -1,0 +1,262 @@
+.signup-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p{
+    margin: 80px auto 50px;
+    font-size: 60px;
+    font-family: GmarketSansTTFBold;
+    color: #FFFFFF;
+    -webkit-text-stroke: 1px #F6AD55;
+    text-shadow: 1px 1px 8px #F6AD55;
+  }
+
+  .student-teacher-block{
+    display: flex;
+    flex-direction: row;
+
+    .block-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #F6AD55;
+      width: 411px;
+      height: 495px;
+      margin: 0px 80px;
+      padding: 0px;
+
+      a{
+        .student-img{
+          height: 250px;
+          width: 264px;
+          margin-top: 50px;
+        }
+      }
+
+      a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+
+        .teacher-img{
+          height: 250px;
+          width: 169px;
+          margin-top: 50px;
+        }
+      }
+      p{
+        font-size: 50px;
+        -webkit-text-stroke: 0px;
+        text-shadow: none;
+      }
+    }
+
+
+  }
+}
+
+@media (max-width:1150px){
+  .signup-container{
+    .student-teacher-block{
+      .block-container{
+        margin:0px 40px;
+      }
+    }
+
+  }
+}
+
+@media (max-width:1075px){
+  .signup-container{
+    .student-teacher-block{
+      flex-direction: column;
+      .block-container{
+        margin-bottom: 50px;
+      }
+    }
+  }
+}
+
+
+@media (max-width:600px){
+  .signup-container{
+    .student-teacher-block{
+      .block-container{
+        width: 375px;
+        height: 450px;
+        margin-bottom: 50px;
+        a{
+          .student-img{
+            height: 220px;
+            width: 250px;
+          }
+          .teacher-img{
+            height: 220px;
+            width: 150px;
+          }
+          p{
+            font-size: 45px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:550px){
+  .signup-container{
+    p{
+      font-size: 55px;
+    }
+    .student-teacher-block{
+      .block-container{
+        width: 325px;
+        height: 400px;
+        margin-bottom: 40px;
+        a{
+          .student-img{
+            height: 220px;
+            width: 250px;
+            margin-top: 30px;
+          }
+          .teacher-img{
+            height: 220px;
+            width: 150px;
+            margin-top: 30px;
+          }
+          p{
+            font-size: 35px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:500px){
+  .signup-container{
+    p{
+      font-size: 55px;
+    }
+    .student-teacher-block{
+      .block-container{
+        width: 280px;
+        height: 350px;
+        margin-bottom: 50px;
+        a{
+          .student-img{
+            height: 200px;
+            width: 220px;
+            margin-top: 20px;
+          }
+          .teacher-img{
+            height: 200px;
+            width: 130px;
+            margin-top: 20px;
+          }
+          p{
+            font-size: 30px;
+            margin-top: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:450px){
+  .signup-container{
+    p{
+      font-size: 40px;
+    }
+    .student-teacher-block{
+      .block-container{
+        width: 240px;
+        height: 300px;
+        margin-bottom: 50px;
+        a{
+          .student-img{
+            height: 150px;
+            width: 180px;
+            margin-top: 20px;
+          }
+          .teacher-img{
+            height: 150px;
+            width: 100px;
+            margin-top: 20px;
+          }
+          p{
+            font-size: 30px;
+            margin-top: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:400px){
+  .signup-container{
+    p{
+      font-size: 35px;
+    }
+    .student-teacher-block{
+      .block-container{
+        width: 210px;
+        height: 270px;
+        margin-bottom: 50px;
+        a{
+          .student-img{
+            height: 120px;
+            width: 150px;
+            margin-top: 20px;
+          }
+          .teacher-img{
+            height: 120px;
+            width: 85px;
+            margin-top: 20px;
+          }
+          p{
+            font-size: 25px;
+            margin-top: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:350px){
+  .signup-container{
+    p{
+      font-size: 30px;
+    }
+    .student-teacher-block{
+      .block-container{
+        width: 160px;
+        height: 220px;
+        margin-bottom: 50px;
+        a{
+          .student-img{
+            height: 120px;
+            width: 150px;
+            margin-top: 20px;
+          }
+          .teacher-img{
+            height: 120px;
+            width: 85px;
+            margin-top: 20px;
+          }
+          p{
+            font-size: 20px;
+            margin-top: 40px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import ReactDOM from "react-dom";
 import { Link } from 'react-router-dom'
 import Block from "../../../components/Block/Block"
 import "antd/dist/antd.css";
 import "./Classlist.scss";
 import classList from '../../../img/classList.png';
+import axios from "axios";
+import Tr from "./Tr";
 import {
   Table,
   Form,
@@ -24,34 +26,21 @@ const EditableContext = React.createContext(null);
 const RULES_INPUT = [
   { required: true, message: "Falta rellenar la caja de texto" }
 ];
-const format = 'HH:mm';
-const RULES_DATE_PICKER = [
-  { type: "object", required: true, message: "Selecciona la fecha" }
-];
+// const format = 'HH:mm';
+// const RULES_DATE_PICKER = [
+//   { type: "object", required: true, message: "Selecciona la fecha" }
+// ];
 
-const options = [{ value: '월요일' }, { value: '화요일' }, { value: '수요일' }, { value: '목요일' },{ value: '금요일' },{ value: '토요일' },{ value: '일요일' }];
 
 const columns = [
   {
-    title: "반",
-    dataIndex: "class",
+    title: "과목/반",
+    dataIndex: "c_name",
     editable: true
   },
   {
-    title: "수업명",
-    dataIndex: "name",
-    editable: true
-  },
-  {
-    title: "시간",
-    dataIndex: "time",
-    type:"time",
-    editable: true
-  },
-  {
-    title: "요일",
-    dataIndex: "date",
-    type: "date",
+    title: "수업 날짜/시간",
+    dataIndex: "c_time",
     editable: true
   },
   {
@@ -60,181 +49,195 @@ const columns = [
     isAction: true
   }
 ];
+// const [dataSource, setDataSource] = useState([]);
+// const tableApi= async () => {
+//   const url = "https://runuptoolmy.paas-ta.org/class/teacher";
+//   let data = await axios.get(url)
+//       .then(function(response) {
+//         setDataSource(response.data);
+//         console.log("성공");
+//       })
+//       .catch(function(error) {
+//         console.log("실패");
+//       })
+//   console.log('data is ' +  JSON.stringify(data));
+// }
 
-const dummyData = [
-  {
-    key: "0",
-    class: "3반",
-    name: "수학",
-    time: "11~1시",
-    date: "",
-  },
-  {
-    key: "1",
-    class: "3반",
-    name: "도덕",
-    time: "3시~5시",
-    date: "",
-  }
-];
-
-const EditableRow = ({ index, ...props }) => {
-  const [form] = Form.useForm();
-
-  return (
-    <Form form={form} component={false}>
-      <EditableContext.Provider value={form}>
-        <tr {...props} />
-      </EditableContext.Provider>
-    </Form>
-  );
-};
-
-const EditableCell = ({
-  title,
-  editable,
-  isAction,
-  children,
-  dataIndex,
-  isExistData,
-  record,
-  handleSave,
-  handleDelete,
-  type,
-  ...restProps
-}) => {
-  const form = useContext(EditableContext);
-
-  const save = async () => {
-    try {
-      await form.validateFields();
-      const values = await form.getFieldsValue();
-      handleSave({ ...record, ...values });
-    } catch (errInfo) {
-      console.log("Save failed:", errInfo);
-    }
-  };
-
-  let childNode;
-
-  if (isAction) {
-    childNode = (
-        
-      <Space>
-          <Link to="/teacher/detail-class">
-            <Button type="text" style={{ float: 'right'}}>출석/퀴즈</Button>
-          </Link>
-        {isExistData ? (
-          <Popconfirm
-            title="Sure to delete?"
-            onConfirm={() => handleDelete(record.key)}
-          >
-            <a>Delete</a>
-          </Popconfirm>
-        ) : null}
-      </Space>
-    );
-  }
-
-  if (editable) {
-    switch (type) {
-        case "time":
-            childNode = (
-            <Form.Item
-                name={dataIndex}
-            >
-                <TimePicker defaultValue={moment('12:08', format)} format={format} />
-                <TimePicker defaultValue={moment('12:08', format)} format={format} />
-
-            </Form.Item>
-            );
-            break;
-        case "date":
-            childNode = (
-            <Form.Item
-                name={dataIndex}
-            >
-                <Select
-                placeholder="Please select"
-                mode="multiple"
-                defaultValue={['월요일', '수요일']}
-                options={options}
-                ></Select>
-                
-            </Form.Item>
-            );
-        break;
-      default:
-        childNode = (
-             
-          <Form.Item
-            name={dataIndex}
-            rules={RULES_INPUT}
-            style={{ margin: 0 }}
-            initialValue={record[dataIndex]}
-          >
-            <Input type="text" placeholder="입력" />
-          </Form.Item>
-
-        );
-        break;
-    }
-  }
-  return <td {...restProps}>{childNode}</td>;
-};
-
+// const EditableRow = ({ index, ...props }) => {
+//   const [form] = Form.useForm();
+//
+//   return (
+//     <Form form={form} component={false}>
+//       <EditableContext.Provider value={form}>
+//         <tr {...props} />
+//       </EditableContext.Provider>
+//     </Form>
+//   );
+// };
+//
+// const EditableCell = ({
+//   title,
+//   editable,
+//   isAction,
+//   children,
+//   dataIndex,
+//   isExistData,
+//   record,
+//   handleSave,
+//   handleDelete,
+//   type,
+//   ...restProps
+// }) => {
+//   const form = useContext(EditableContext);
+//
+//   let childNode;
+//
+//   if (isAction) {
+//     childNode = (
+//       <Space>
+//           <Link to="/teacher/detail-class">
+//             <Button type="text" style={{ float: 'right'}}>출석/퀴즈</Button>
+//           </Link>
+//         {isExistData ? (
+//           <Popconfirm
+//             title="Sure to delete?"
+//             onConfirm={() => handleDelete(record.key)}
+//           >
+//             <a>Delete</a>
+//           </Popconfirm>
+//         ) : null}
+//       </Space>
+//     );
+//   }
+//
+//   if (editable) {
+//     switch (type) {
+//       default:
+//         childNode = (
+//           <Form.Item
+//             name={dataIndex}
+//             style={{ margin: 0 }}
+//             initialValue={record[dataIndex]}
+//           >
+//             <Input type="text" placeholder="입력" />
+//           </Form.Item>
+//         );
+//         break;
+//     }
+//   }
+//   return <td {...restProps}>{childNode}</td>;
+// };
+// const fetchData =()=>{
+//   const url ="https://runuptoolmy.paas-ta.org/class/teacher";
+//   fetch(url)
+//       .then(function(response) {return response.json();})
+//       .then(function(myJson) {
+//         console.log(JSON.stringify(myJson));
+//       });
+// }
 const Classlist= () => {
-  const [count, setCount] = useState(0);
-  const [dataSource, setDataSource] = useState(dummyData);
 
-  const handleDelete = (key) => {
-    const data = [...dataSource];
-    setDataSource(data.filter((item) => item.key !== key));
-  };
+  const [info, setInfo]=useState([]);
+  const [selected,setSelected] =useState('');
+  const [modalOn, setModalOn] = useState(false);
 
-  const handleSave = (row) => {
-    const newData = [...dataSource];
-    const index = newData.findIndex((item) => row.key === item.key);
-    const item = newData[index];
-    newData.splice(index, 1, { ...item, ...row });
-    setDataSource(newData);
-  };
+  const nextId=useRef(11);
 
-  const components = {
-    body: {
-      row: EditableRow,
-      cell: EditableCell
+  useEffect(()=>{
+     axios.get('https://runuptoolcloud22.paas-ta.org/class/teacher')
+        .then(res => setInfo(res.data))
+        .catch(err => console.log(err));
+    console.log(info)
+  },[]);
+
+
+  // const handleDelete = (key) => {
+  //   const data = [...dataSource];
+  //   setDataSource(data.filter((item) => item.key !== key));
+  // };
+
+  const handleSave = (data) => {
+    if (data.id) {
+      setInfo(
+          info.map(row => data.id === row.id ? {
+            c_name: data.c_name,
+            c_time: data.c_time,
+          } : row))
+    } else {
+      setInfo(info => info.concat(
+          {
+            c_name: nextId.c_name,
+            c_time: nextId.c_time,
+          }
+      ))
+      nextId.current += 1;
     }
-  };
+  }
 
-  const columnsData = columns.map((col) => {
-    if (col.isAction) {
-      return {
-        ...col,
-        onCell: (record) => ({
-          record,
-          title: col.title,
-          isAction: col.isAction,
-          dataIndex: col.dataIndex,
-          handleDelete: handleDelete,
-          handleSave: handleSave,
-          isExistData: dataSource.length >= 1
-        })
+    const handleRemove = (id) => {
+      setInfo(info => info.filter(item => item.id!==id));
+    }
+
+    const handleEdit = (item) =>{
+      setModalOn(true);
+      const selectedData={
+        c_name:item.c_name,
+        c_time:item.c_time,
       };
+      console.log(selectedData);
+      setSelected(selectedData);
     }
 
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        title: col.title,
-        editable: col.editable,
-        dataIndex: col.dataIndex,
-        handleSave: handleSave,
-        type: col?.type || "input"
-      })
-    };
-  });
+    const handleCancel=()=>{
+      setModalOn(false);
+    }
+
+    const handleEditSubmit=(item) => {
+      console.log(item);
+      handleSave(item);
+      setModalOn(false);
+    }
+    // const newData = [...info];
+    // const index = newData.findIndex((item) => row.key === item.key);
+    // const item = newData[index];
+    // newData.splice(index, 1, { ...item, ...row });
+    // setDataSource(newData);
+
+  // const components = {
+  //   body: {
+  //     row: EditableRow,
+  //     cell: EditableCell
+  //   }
+  // };
+  //
+  // const columnsData = columns.map((col) => {
+  //   if (col.isAction) {
+  //     return {
+  //       ...col,
+  //       onCell: (record) => ({
+  //         record,
+  //         title: col.title,
+  //         isAction: col.isAction,
+  //         dataIndex: col.dataIndex,
+  //         handleDelete: handleDelete,
+  //         handleSave: handleSave,
+  //         isExistData: dataSource.length >= 1
+  //       })
+  //     };
+  //   }
+  //
+  //   return {
+  //     ...col,
+  //     onCell: (record) => ({
+  //       record,
+  //       title: col.title,
+  //       editable: col.editable,
+  //       dataIndex: col.dataIndex,
+  //       handleSave: handleSave,
+  //       type: col?.type || "input"
+  //     })
+  //   };
+  // });
 
   return (
     <div>
@@ -247,14 +250,25 @@ const Classlist= () => {
           <img className="class-list" src={classList} style={{ float: 'left'}}/>
           <Title >수업리스트</Title>
       <hr></hr>
+      {/*<Button type="primary" onClick={tableApi}>새로고침</Button>*/}
       <div style={{marginTop:'2rem'}}>
-        <Table
-            bordered
-            components={components}
-            rowClassName={() => "editable-row"}
-            dataSource={dataSource}
-            columns={columnsData}
-        /></div>
+        <table>
+          <thead style={{justifyContent:"space-between"}}>
+            <tr>
+              <th>과목/반</th>
+              <th>수업시간</th>
+            </tr>
+          </thead>
+          <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit}/>
+        </table>
+      </div>
+      {/*  <Table*/}
+      {/*      bordered*/}
+      {/*      components={components}*/}
+      {/*      rowClassName={() => "editable-row"}*/}
+      {/*      dataSource={dataSource}*/}
+      {/*      columns={columnsData}*/}
+      {/*  /></div>*/}
     </Block>
     </div>
 

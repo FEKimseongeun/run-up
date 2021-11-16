@@ -1,0 +1,112 @@
+.login-container{
+
+  .mainpage-login-container{
+    display: flex;
+    flex-direction: row;
+    .mainpage-vertical-line{
+      border-left: 1px solid black;
+      margin-top: 200px;
+      height: 370px;
+    }
+
+    .login-form-container{
+      margin: 200px auto 100px;
+    }
+  }
+
+  .mainpage-auth-container{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    margin: auto;
+
+
+    .button-container{
+      font-size: 16px;
+      color: #595260;
+      margin: 0px 10px 30px;
+    }
+
+    .mainpage-vertical-line{
+      border-left: 1px solid black;
+      height: 20px;
+    }
+  }
+
+}
+
+@media (max-width:1075px){
+  .login-container{
+    .mainpage-login-container{
+      flex-direction: column;
+      .mainpage-vertical-line{
+        display: none;
+      }
+
+      .login-form-container{
+        margin-top: 60px;
+        margin-bottom: 0px;
+      }
+    }
+    .mainpage-auth-container{
+      margin-top: 40px;
+    }
+  }
+
+}
+
+
+@media (max-width:575px){
+  .login-container{
+    .mainpage-login-container{
+
+      .login-form-container{
+        margin-top: 60px;
+        width: 80%;
+
+        .login-input-form{
+          width: 100%;
+
+        }
+      }
+    }
+
+  }
+
+}
+
+
+@media (max-width:400px){
+  .login-container{
+    .mainpage-login-container{
+
+      .auth-login-form{
+        p{
+          font-size: 12px;
+        }
+      }
+    }
+
+  }
+
+}
+
+@media (max-width:350px){
+  .login-container{
+    .mainpage-login-container{
+
+      .auth-login-form{
+        p{
+          font-size: 12px;
+        }
+        .button-container{
+          font-size: 12px;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      }
+    }
+
+  }
+
+}
