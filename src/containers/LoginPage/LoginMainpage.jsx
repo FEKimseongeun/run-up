@@ -6,7 +6,7 @@ import Signup from './SignUp/SignUp'
 // import FindPassword from './FindPassword/FindPassword'
 // import ResetPassword from './ResetPassword/ResetPassword'
 // import StudentSignup from './StudentSignup/StudentSignup'
-// import TeacherSignup from './TeacherSignup/TeacherSignup'
+import TeacherSignup from './TeacherSignup/TeacherSignup'
 import './LoginMainpage.scss'
 
 const LoginMainpage = ({match}) => {
@@ -21,7 +21,7 @@ const LoginMainpage = ({match}) => {
                 {/*<Route path={`${match.path}find-password`} component={FindPassword} />*/}
                 {/*<Route path={`${match.path}reset-password`} component={ResetPassword} />*/}
                 {/*<Route path={`${match.path}student-signup`} component={StudentSignup} />*/}
-                {/*<Route path={`${match.path}teacher-signup`} component={TeacherSignup} />*/}
+                <Route path={`${match.path}/teacher-signup`} component={TeacherSignup} />
             </Switch>
         </div>
     </>

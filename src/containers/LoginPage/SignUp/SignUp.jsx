@@ -18,7 +18,7 @@ const Signup = () => {
                     </Link>
                 </Block>
                 <Block>
-                    <Link to='/teacher-signup' style={{textDecoration: 'none'}}>
+                    <Link to='/login/teacher-signup' style={{textDecoration: 'none'}}>
                         <img  className="teacher-img" src={SignTeacher} />
                         <p>나는 선생님!</p>
                     </Link>

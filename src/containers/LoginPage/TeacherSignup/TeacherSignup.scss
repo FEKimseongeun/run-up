@@ -1,0 +1,144 @@
+.teacher-signup-container{
+  display: flex;
+  height: 100%;
+  width: 100%;
+
+  .block-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+
+    .teacher-signup-content{
+      display: flex;
+      width: fit-content;
+      height: fit-content;
+      flex-direction: column;
+
+      .teacher-signup-form{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 30px;
+
+        .teacher-signup-text{
+          display: flex;
+          flex-direction: column;
+          margin-left: 10px;
+
+          .teacher-signup-main{
+            font-size: 34px;
+            font-family: GMarketSansTTFBold;
+            color: #594E46;
+            text-shadow: 1px 1px 3px #594E46;
+          }
+
+          p{
+            font-size: 23px;
+            font-family: GMarketSansTTFLight;
+          }
+        }
+      }
+
+      .teacher-signup-first-body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #594E46;
+
+      }
+
+      .teacher-signup-horizontal-line{
+        border-bottom: 1px solid #9D9D9D;
+        width: 571.5px;
+        margin: 30px;
+      }
+
+      .teacher-signup-second-body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .button-container{
+          background-color: #F6AD55;
+          height: 49px;
+          width: 194px;
+          border-radius: 40px;
+          margin-top: 30px;
+          font-family: GmarketSansTTFBold;
+          color: #FFFFFF;
+          font-size: 20px;
+        }
+
+
+      }
+    }
+
+  }
+}
+
+
+@media (max-width: 550px){
+  .teacher-signup-container{
+    .teacher-signup-content{
+      .teacher-signup-form{
+        width: 375px;
+      }
+      .auth-form-component{
+        .auth-form-main{
+          width: 150px;
+        }
+      }
+
+    }
+  }
+}
+
+@media (max-width: 450px){
+  .teacher-signup-container{
+    .block-container{
+      .teacher-signup-content{
+        .teacher-signup-form{
+          width: fit-content;
+          img{
+            width: 65px;
+          }
+          .teacher-signup-text{
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+
+            .teacher-signup-main{
+              font-size: 25px;
+              font-family: GMarketSansTTFBold;
+              color: #594E46;
+              text-shadow: 1px 1px 3px #594E46;
+            }
+
+            p{
+              font-size: 15px;
+              font-family: GMarketSansTTFLight;
+            }
+          }
+
+        }
+        .auth-form-component{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin-bottom: 40px;
+          .auth-form-main{
+            width: fit-content;
+            margin: 0px 10px 10px;
+            font-size: 18px;
+          }
+        }
+
+      }
+    }
+  }
+}
