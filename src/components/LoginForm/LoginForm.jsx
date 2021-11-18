@@ -21,11 +21,10 @@ const LoginForm = (props) => {
             const response = await axios.post(
                 'https://runuptoolcloud22.paas-ta.org/user/login',{
                     headers:{
-                        headers: { 'Content-type': 'application/x-www-form-urlencoded', },
-
+                        "Content-Type" : "application/json",
                     },
-                    email:'kodsad@gmail.com',
-                    password:'1234'
+                    email:'auddus16@gmail.com',
+                    password:'12345'
                 }
 
             );
