@@ -20,6 +20,7 @@ import {
   TimePicker
 } from "antd";
 import moment from "moment";
+import API from "../../api"
 const { Title } = Typography;
 const EditableContext = React.createContext(null);
 
@@ -144,11 +145,12 @@ const Classlist= () => {
   const nextId=useRef(11);
 
   useEffect(()=>{
-     axios.get('https://runuptoolcloud22.paas-ta.org/class/teacher')
-        .then(res => setInfo(res.data))
-        .catch(err => console.log(err));
-    console.log(info)
-  },[]);
+    const {data } = API.get(
+        "/class/teacher"
+    );
+    console.log(data);
+    return data;
+  },null);
 
 
   // const handleDelete = (key) => {

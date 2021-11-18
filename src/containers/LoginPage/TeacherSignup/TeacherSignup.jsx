@@ -7,6 +7,7 @@ import AuthForm from '../../../components/AuthForm/AuthForm'
 import AuthInput from '../../../components/AuthInput/AuthInput'
 import Button from '../../../components/Buttons/Buttons'
 
+
 const TeacherSignup = () => {
     return (
         <div className="teacher-signup-container">
