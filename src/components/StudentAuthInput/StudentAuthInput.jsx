@@ -1,27 +1,45 @@
-import React, {useEffect,useState} from 'react'
-import Buttons from '../Buttons/Buttons'
-import loginLock from '../../img/login_lock.png'
+import React, {useState} from "react";
+
+import './StudentAuthInput.scss'
 import axios from "axios";
 
-import './LoginForm.scss'
-
-const LoginForm = (props) => {
+const StudentAuthInput = (props) => {
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [inputName, setInputName] = useState('')
+    const [inputBirth, setInputBirth] = useState('')
+    const [inputSchool, setInputSchool] = useState('')
+    const [inputPhone, setInputPhone] = useState('')
     const [inputId, setInputId] = useState('')
     const [inputPw, setInputPw] = useState('')
-
+    const [inputNic, setInputNic] = useState('')
+    const [PwCheck, setPwCheck] = useState('')
 
     const handleInputId = (e) => {
         setInputId(e.target.value)
     }
-
     const handleInputPw = (e) => {
         setInputPw(e.target.value)
     }
+    const handleInputName = (e) => {
+        setInputName(e.target.value)
+    }
+    const handleInputBirth = (e) => {
+        setInputBirth(e.target.value)
+    }
+    const handleInputSchool = (e) => {
+        setInputSchool(e.target.value)
+    }
+    const handleInputPhone = (e) => {
+        setInputPhone(e.target.value)
+    }
+    const handleInputNic = (e) => {
+        setInputNic(e.target.value)
+    }
 
-    const fetchUsers = async () => {
+
+    const fetchTeacherUser = async () => {
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
@@ -52,25 +70,14 @@ const LoginForm = (props) => {
     };
 
     return (
-        <div className="login-form-container">
-            <div className="login-image-status">
-                <img src={loginLock} />
-                <p className="status-login">{props.user} 로그인</p>
-            </div>
-            <p className="login-form-notify">아이디(이메일)</p>
-            <input className="login-input-form" name="input_id"
-                   placeholder={"email"} value={inputId} onChange={handleInputId}
+        <div className="auth-input-component">
+            <input style={{
+                width: props.width
+            }}
+                placeholder={props.placeholder}
             />
-            <p className="login-form-notify">비밀번호</p>
-            <input className="login-input-form" name="input_password"
-                   placeholder={"password"} value={inputPw} onChange={handleInputPw}
-            />
-            <div className="login-state-store-form">
-
-            </div>
-            <Buttons text={"로그인하기"} onClick={fetchUsers}/>
         </div>
     )
 }
 
-export default LoginForm
+export default StudentAuthInput

@@ -1,16 +1,16 @@
 import React, {useState} from 'react'
 import Block from '../../../components/Block/Block'
 
-import './TeacherSignup.scss'
+import './StudentSignup.scss'
 import Signup from '../../../img/signup.png'
 import AuthForm from '../../../components/AuthForm/AuthForm'
-import Modal from "./Modal"
+import AuthInput from '../../../components/AuthInput/AuthInput'
 import Buttons from '../../../components/Buttons/Buttons'
-import TeacherAuthInput from "../../../components/TeacherAuthInput/TeacherAuthInput";
+import Modal from "../TeacherSignup/Modal";
 import axios from "axios";
 
+const StudentSignup = () => {
 
-const TeacherSignup = () => {
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -23,6 +23,8 @@ const TeacherSignup = () => {
     const [inputNic, setInputNic] = useState('')
     const [PwCheck, setPwCheck] = useState('')
     const [inputGender, setInputGender] = useState('')
+    const [inputGrade, setInputGrade] = useState(0)
+    const [inputClass, setInputClass] = useState(0)
 
     const handleInputId = (e) => {
         setInputId(e.target.value)
@@ -47,14 +49,15 @@ const TeacherSignup = () => {
     }
     const handlePwCheck = (e) => {
         setPwCheck(e.target.value)
-        if(!(inputPw===PwCheck)){
-            return (
-                <Modal message="비밀번호가 틀립니다." />
-            )
-        }
     }
     const handleInputGender = (e) => {
         setInputGender(e.target.value)
+    }
+    const handleInputClass = (e) => {
+        setInputClass(e.target.value)
+    }
+    const handleInputGrade = (e) => {
+        setInputGrade(e.target.value)
     }
 
     const fetchUsers = async () => {
@@ -67,18 +70,20 @@ const TeacherSignup = () => {
             console.log('ID : ', inputId);
             console.log('PW : ', inputPw);
             const response = await axios.post(
-                'https://runuptoolcloud22.paas-ta.org/teacher/signupTeacher',{
+                'https://runuptoolcloud22.paas-ta.org/student/signupStudent',{
                     headers:{
                         "Content-Type" : "application/json",
                     },
                     widthCredentials: true,
-                    t_birth:inputBirth,
-                    t_email:inputId,
-                    t_gender:true,
-                    t_id:inputNic,
-                    t_name:inputName,
-                    t_password:inputPw,
-                    t_school:inputSchool
+                    s_birth:inputBirth,
+                    s_class:inputClass,
+                    s_email:inputId,
+                    s_gender:true,
+                    s_grade:inputGrade,
+                    s_id:inputNic,
+                    s_name:inputName,
+                    s_password:inputPw,
+                    s_school:inputSchool
                 }
             );
             console.log(response.data);
@@ -91,42 +96,56 @@ const TeacherSignup = () => {
     };
 
     return (
-        <div className="teacher-signup-container">
+        <div className="student-signup-container">
             <Block>
-                <div className="teacher-signup-content">
-                    <div className="teacher-signup-form">
+                <div className="student-signup-content">
+                    <div className="student-signup-form">
                         <img src={Signup} />
-                        <div className="teacher-signup-text">
-                            <p className="teacher-signup-main">선생님 회원가입</p>
+                        <div className="student-signup-text">
+                            <p className="student-signup-main">학생 회원가입</p>
                             <p>정보를 입력해주세요</p>
                         </div>
                     </div>
-                    <div className="teacher-signup-first-body">
-                        <AuthForm name={"선생님 이름"}>
+                    <div className="student-signup-first-body">
+                        <AuthForm name={"학생 이름"}>
                             <div className="auth-input-component">
                                 <input style={{width: "150px"}}
                                        value={inputName} onChange={handleInputName}
                                 />
                             </div>
                         </AuthForm>
-                        <AuthForm name={"선생님 생년월일"}>
+                        <AuthForm name={"학생 생년월일"}>
                             <div className="auth-input-component">
                                 <input style={{width: "150px"}}
                                        value={inputBirth} onChange={handleInputBirth}
                                 />
                             </div>
                         </AuthForm>
-                        <AuthForm name={"선생님 성별"}>
+                        <AuthForm name={"학생 성별"}>
                             <div className="auth-input-component">
                                 <input style={{width: "150px"}} placeholder={"여/남"}
                                        value={inputGender} onChange={handleInputGender}
                                 />
                             </div>
                         </AuthForm>
-                        <AuthForm name={"학교명"}>
+                        <AuthForm name={"학생 학교명"}>
                             <div className="auth-input-component">
                                 <input style={{width: "150px"}}
                                        value={inputSchool} onChange={handleInputSchool}
+                                />
+                            </div>
+                        </AuthForm>
+                        <AuthForm name={"학생 반"}>
+                            <div className="auth-input-component">
+                                <input style={{width: "150px"}}
+                                       value={inputClass} onChange={handleInputClass}
+                                />
+                            </div>
+                        </AuthForm>
+                        <AuthForm name={"학생 학년"}>
+                            <div className="auth-input-component">
+                                <input style={{width: "150px"}}
+                                       value={inputGrade} onChange={handleInputGrade}
                                 />
                             </div>
                         </AuthForm>
@@ -161,7 +180,7 @@ const TeacherSignup = () => {
                                 {inputPw===PwCheck ? null: <Modal message="비밀번호가 틀립니다." />}
                             </div>
                         </AuthForm>
-                        <AuthForm name={"선생님 이메일"}>
+                        <AuthForm name={"학생 이메일"}>
                             <div className="auth-input-component">
                                 <input style={{width: "200px"}}
                                        value={inputId} onChange={handleInputId}
@@ -176,4 +195,4 @@ const TeacherSignup = () => {
     )
 }
 
-export default TeacherSignup
+export default StudentSignup

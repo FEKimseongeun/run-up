@@ -3,9 +3,9 @@ import Buttons from '../Buttons/Buttons'
 import loginLock from '../../img/login_lock.png'
 import axios from "axios";
 
-import './LoginForm.scss'
+import './LoginFormTeacher.scss'
 
-const LoginForm = (props) => {
+const LoginFormTeacher = (props) => {
     const [users, setUsers] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -39,17 +39,24 @@ const LoginForm = (props) => {
                     email:inputId,
                     password:inputPw
                 }
-            );
+            )
 
+            // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+            localStorage.setItem('login-token', response.data.token);
+            axios.defaults.headers.common['Authorization'] = `${response.data.token}`;
             setUsers(response.data);
-            console.log(response.data);
+            console.log(`${response.data.token}`);
             console.log("성공");// 데이터는 response.data 안에 들어있습니다.
-            document.location.href = '/student/s-classlist'
+            //document.location.href = `/teacher/class-list`
         } catch (e) {
             setError(e);
         }
         setLoading(false);
     };
+
+
+
+
 
     return (
         <div className="login-form-container">
@@ -73,4 +80,4 @@ const LoginForm = (props) => {
     )
 }
 
-export default LoginForm
+export default LoginFormTeacher

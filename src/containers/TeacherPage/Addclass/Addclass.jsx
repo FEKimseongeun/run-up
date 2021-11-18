@@ -3,10 +3,9 @@ import 'antd/dist/antd.css';
 import {TimePicker, Select, Button, Input, Typography} from 'antd';
 import Block from "../../../components/Block/Block";
 import addClass from "../../../img/addClass.png";
+import Buttons from "../../../components/Buttons/Buttons";
 import { Link} from "react-router-dom";
 import axios from "axios";
-import moment from 'moment';
-import ReactDOM from "react-dom";
 
 import API from "../../api";
 
@@ -21,6 +20,9 @@ function Addclass() {
     // const [state, setState] = useState([
     //     {title: "a"}
     // ]);
+    const [users, setUsers] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [ClassName, SetClassName] = useState("");
     const [ClassDate, SetClassDate] = useState("");
 
@@ -34,38 +36,34 @@ function Addclass() {
         SetClassDate(e.target.value);
     };
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        // state에 저장한 값을 가져옵니다.
-
-        let body = {
-            c_name: ClassName,
-            c_time: ClassDate,
-        };
-
-        axios
-            .post("https://runuptoolcloud22.paas-ta.org/class/teacher/new",
-                {
+    const fetchAddClass = async () => {
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setUsers(null);
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+            console.log('ClassName : ', ClassName);
+            console.log('ClassDate : ', ClassDate);
+            const response = await axios.post(
+                'https://runuptoolcloud22.paas-ta.org/class/teacher/new',{
+                    headers:{
+                        "Content-Type" : "application/json",
+                    },
+                    widthCredentials: true,
                     c_name:ClassName,
-                    c_time:ClassDate
-                })
-            .then(function (response){
-                console.log(response);
-            });
-        console.log(ClassName);
-        console.log(ClassDate);
+                    c_date:ClassDate
+                }
+            );
+            console.log(response.data);
+            console.log("성공");// 데이터는 response.data 안에 들어있습니다.
+            document.location.href = '/teacher/class-list'
+        } catch (e) {
+            setError(e);
+        }
+        setLoading(false);
     };
 
-
-    // adds new obj
-    // const addObject = () => setState([...state, {title: ""}]);
-    // function handleRemove(i) {
-    //     const values = [addObject];
-    //     values.splice(i, 1);
-    //     setState(values);
-    // }
-
-    const ref = useRef(null);
 
     return (
         <Block>
@@ -90,9 +88,6 @@ function Addclass() {
                     <hr></hr>
 
                     <div className="col" style={{margin: "1rem auto"}}>
-                        {/*{state.map((item, i) => (*/}
-                        {/*    <div key={i}>*/}
-                        {/*        <div ref={ref} value={item.title}>*/}
                                     <label>수업 요일/시간 : </label>
                                     <Input
                                         style={{width: "20%"}}
@@ -101,20 +96,10 @@ function Addclass() {
                                         onChange={ClassDateHandler}
                                         name="c_time"
                                     />
-                        {/*        </div>*/}
-                        {/*        <Button type="button" style={{margin: "0.5rem auto"}}*/}
-                        {/*                onClick={() => handleRemove(i)}>지우기</Button>*/}
-                        {/*    </div>*/}
-                        {/*))}*/}
-                        {/*<Button type="button" onClick={addObject}>수업시간 추가하기</Button>*/}
-                    </div>
-
+                        </div>
                 </div>
-                <Link to="/teacher/class-list">
-                    <Button type="submit" onClick={submitHandler}>
-                        추가하기
-                    </Button>
-                </Link>
+                    <Buttons text={"추가하기"} onClick={fetchAddClass}>
+                    </Buttons>
             </form>
         </Block>
 

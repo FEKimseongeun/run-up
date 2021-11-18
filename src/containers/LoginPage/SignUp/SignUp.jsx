@@ -12,7 +12,7 @@ const Signup = () => {
             <p>회원가입</p>
             <div className="student-teacher-block">
                 <Block>
-                    <Link to='/student-signup' style={{textDecoration: 'none'}}>
+                    <Link to='/login/student-signup' style={{textDecoration: 'none'}}>
                         <img className="student-img" src={SignStudent} />
                         <p>나는 학생!</p>
                     </Link>

@@ -141,16 +141,38 @@ const Classlist= () => {
   const [info, setInfo]=useState([]);
   const [selected,setSelected] =useState('');
   const [modalOn, setModalOn] = useState(false);
+  const [users, setUsers] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const nextId=useRef(11);
 
-  useEffect(()=>{
-    const {data } = API.get(
-        "/class/teacher"
-    );
-    console.log(data);
-    return data;
-  },null);
+  const fetchUsers = async () => {
+    try {
+      // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+      setError(null);
+      setUsers(null);
+      // loading 상태를 true 로 바꿉니다.
+      setLoading(true);
+      const response = await axios.get(
+          'https://runuptoolcloud22.paas-ta.org/class/teacher',{
+            headers: {
+              'Authorization': 'Bearer ' + localStorage.getItem("login-token"),
+            },
+          }
+      );
+      setInfo(response.data);
+      console.log(localStorage.getItem("login-token"))// 데이터는 response.data 안에 들어있습니다.
+    } catch (e) {
+      setError(e);
+    }
+
+      setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
 
   // const handleDelete = (key) => {
@@ -163,12 +185,14 @@ const Classlist= () => {
       setInfo(
           info.map(row => data.id === row.id ? {
             c_name: data.c_name,
+            c_no: data.c_no,
             c_time: data.c_time,
           } : row))
     } else {
       setInfo(info => info.concat(
           {
             c_name: nextId.c_name,
+            c_no: nextId.c_no,
             c_time: nextId.c_time,
           }
       ))
