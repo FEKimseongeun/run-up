@@ -11,7 +11,7 @@ const Td =({item,handleRemove}) =>{
                 <td>{item.c_name}</td>
                 <td>{item.c_time}</td>
                 <Link to={`/teacher/detail-class/${item.c_name}`}>
-                    <td >수정</td>
+                    <td >상세정보</td>
                 </Link>
                     <td onClick={onRemove}>삭제</td>
 

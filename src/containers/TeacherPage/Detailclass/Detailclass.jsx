@@ -5,6 +5,8 @@ import { Space, Button,Cascader, Tabs,Table, Input, InputNumber, Popconfirm, For
 import 'antd/dist/antd.css';
 import Block from "../../../components/Block/Block"
 import addClass from "../../../img/addClass.png";
+import Tr from "./Tr";
+import axios from "axios";
 
 const { Title } = Typography;
 const { TabPane } = Tabs;
@@ -77,6 +79,50 @@ const EditableCell = ({
   );
 };
 function Detailclass(props) {
+  const [info, setInfo]=useState([]);
+  const [state,setState] =useState('');
+  const [modalOn, setModalOn] = useState(false);
+  const [users, setUsers] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+
+
+
+  const fetchUsers = async () => {
+    try {
+      // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+      setError(null);
+      setUsers(null);
+      // loading 상태를 true 로 바꿉니다.
+      setLoading(true);
+      axios.get("https://runuptoolcloud22.paas-ta.org/quiz/getQuizAll/1" ,{
+        header: {
+          "Content-Type": `application/json`,
+          'Authorization':localStorage.getItem('JWT')
+        },
+        widthCredentials: true,
+      })
+          .then(res =>{
+            setInfo(res.data)
+            console.log(JSON.stringify(res.data))
+          })
+          .catch(ex=>{
+            console.log(" requset fail : " + ex);
+          })
+          .finally(()=>{console.log("login request end")}
+              //document.location.href = `/teacher/class-list`}
+          );
+    }catch(e){
+      console.log(e);
+    }
+
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
   const att_name=new Array(20)
 
   const originData = [
@@ -93,18 +139,18 @@ function Detailclass(props) {
   ];
 
   const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
+  const [data, setData] = useState(info);
   const [editingKey, setEditingKey] = useState("");
 
-  const isEditing = (record) => record.key === editingKey;
+  const isEditing = (record) => record.q_no === editingKey;
 
   const edit = (record) => {
     form.setFieldsValue({
-      quiz: "",
-      answer: "",
+      q_ques: "",
+      q_ans: "",
       ...record
     });
-    setEditingKey(record.key);
+    setEditingKey(record.q_no);
   };
 
   const cancel = () => {
@@ -112,11 +158,11 @@ function Detailclass(props) {
   };
 
 
-  const save = async (key) => {
+  const save = async (q_no) => {
     try {
       const row = await form.validateFields();
       const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
+      const index = newData.findIndex((item) => q_no === item.q_no);
 
       if (index > -1) {
         const item = newData[index];
@@ -137,13 +183,13 @@ function Detailclass(props) {
   const columns = [
     {
       title: "문제",
-      dataIndex: "quiz",
+      dataIndex: "q_ques",
       width: "25%",
       editable: true
     },
     {
       title: "답",
-      dataIndex: "answer",
+      dataIndex: "q_ans",
       width: "40%",
       editable: true
     },
@@ -157,7 +203,7 @@ function Detailclass(props) {
           <span>
             <a
               href="javascript:;"
-              onClick={() => save(record.key)}
+              onClick={() => save(record.q_no)}
               style={{
                 marginRight: 8
               }}
@@ -186,13 +232,13 @@ function Detailclass(props) {
         const editable = isEditing(record);
         return editable ? (
           <span>
-            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.q_no)}>
               <a>Delete</a>
             </Popconfirm>
           </span>
         ) : (
           <span>
-            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.q_no)}>
               <a>Delete</a>
             </Popconfirm>
           </span>
@@ -274,22 +320,33 @@ function Detailclass(props) {
             <Button type="primary" style={{ float: 'left', marginBottom:'10px'}}>퀴즈추가</Button>
           </Link>
         </div>
-    <Form form={form} component={false}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell
-          }
-        }}
-        bordered
-        dataSource={data}
-        columns={mergedColumns}
-        rowClassName="editable-row"
-        pagination={{
-          onChange: cancel
-        }}
-      />
-    </Form>
+            <div style={{marginTop:'2rem'}}>
+              {/*<table>*/}
+              {/*  <thead style={{justifyContent:"space-between"}}>*/}
+              {/*  <tr>*/}
+              {/*    <th>문제</th>*/}
+              {/*    <th>수업시간</th>*/}
+              {/*  </tr>*/}
+              {/*  </thead>*/}
+              {/*  <Tr info={info} handleRemove={handleRemove} />*/}
+              {/*</table>*/}
+            <Form form={form} component={false}>
+              <Table
+                  components={{
+                    body: {
+                      cell: EditableCell
+                    }
+                  }}
+                  bordered
+                  dataSource={data}
+                  columns={mergedColumns}
+                  rowClassName="editable-row"
+                  pagination={{
+                    onChange: cancel
+                  }}
+              />
+            </Form>
+            </div>
     </TabPane>
       </Tabs>
     </div>
