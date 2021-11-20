@@ -64,6 +64,7 @@ const TeacherSignup = () => {
             setUsers(null);
             // loading 상태를 true 로 바꿉니다.
             setLoading(true);
+            localStorage.setItem("userName",inputName);
             console.log('ID : ', inputId);
             console.log('PW : ', inputPw);
             const response = await axios.post(

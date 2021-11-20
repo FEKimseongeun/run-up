@@ -27,7 +27,7 @@ function InviteStudent() {
         setInputEmail3(e.target.value)
     }
 
-    const fetchUsers = async () => {
+    const fetchUsers =  () => {
         try {
             // 요청이 시작 할 때에는 error 와 users 를 초기화하고
             setError(null);
@@ -37,33 +37,57 @@ function InviteStudent() {
             console.log('1 : ', inputEmail1);
             console.log('2 : ', inputEmail2);
             console.log('3 : ', inputEmail3);
+            let inviteURL1 = 'http://localhost:3000/login/1';
+            let c_name1 = '수학1반';
+            let body=inputEmail1;
 
-            let body=[inputEmail1,inputEmail2,inputEmail3]
-            console.log(JSON.stringify(body))
-            console.log(localStorage.getItem("login-token"))
-            await axios.post(
-                'https://runuptoolcloud22.paas-ta.org/class/teacher/email/1',{
-                    headers:{
-                        'Authorization': localStorage.getItem("login-token"),
+            const email=inputEmail1;
+            const c_name=c_name1;
+            const inviteURL=inviteURL1
+            const data={
+                email,c_name,inviteURL
+            }
+
+
+            console.log(body)
+            console.log(c_name1)
+            console.log(inviteURL1)
+            axios.post(
+                'https://runuptoolcloud22.paas-ta.org/class/teacher/email',{
+                    email:email,
+                    c_name:c_name,
+                    inviteURL:inviteURL
+                    // email:body,
+                    // c_name:c_name,
+                    // inviteURL:inviteURL
+                },{
+                    header:{
+                        "Content-Type" : "application/json",
                     },
                     widthCredentials: true,
-                    c_name:'수학1반',
-                    email:body,
-                    inviteURL:'http://localhost:3000/login/1'
                 }
-            );
-            console.log("성공");// 데이터는 response.data 안에 들어있습니다.
-            document.location.href = '/login'
-        } catch (e) {
-            setError(e);
-        }
+            )
+                .then(res =>{
+                console.log("res.data: " + res.data);
+
+                })
+                .catch(ex=>{
+                    console.log("requset fail : " + ex.message);
+                })
+                .finally(()=>{console.log("dd")}
+                        //document.location.href = `/teacher/class-list`}
+                    //document.location.href = `/teacher/class-list`}
+                );
+        }catch(e){
+            console.log(e.message);
+        };
         setLoading(false);
     };
     return (
         <div>
             <Block>
                 <img className="invite" src={invite} style={{ float: 'left', width:'50px'}}/>
-                <Title >수업 추가</Title>
+                <Title >학생 초대</Title>
                 <hr></hr>
             <div
                 id="inviteInput"
@@ -77,9 +101,8 @@ function InviteStudent() {
             >
                 <div style={{fontSize:'30px'}}>
                     초대할 학생 이메일 입력
-                    <button type="email" onClick={fetchUsers}>초대하기</button>
                 </div>
-
+                <Buttons text={'초대하기'} onClick={fetchUsers}/>
                     <Input placeholder="이메일 입력" prefix={<UserOutlined />} style={{margin:'1rem auto'}} value={inputEmail1} onChange={handleEmail1}/>
                     <Input placeholder="이메일 입력" prefix={<UserOutlined />}style={{margin:'1rem auto'}} value={inputEmail2} onChange={handleEmail2}/>
                     <Input placeholder="이메일 입력" prefix={<UserOutlined />} style={{margin:'1rem auto'}} value={inputEmail3} onChange={handleEmail3}/>

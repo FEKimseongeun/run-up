@@ -77,6 +77,8 @@ const EditableCell = ({
   );
 };
 function Detailclass(props) {
+  const att_name=new Array(20)
+
   const originData = [
     {
       key: "0",
@@ -243,7 +245,7 @@ function Detailclass(props) {
           >
               <div className="att">
               <Space size={[8, 16]} wrap>
-                {new Array(20).fill(null).map((_, index) => (
+                {att_name.fill(null).map((_, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <Cascader options={options} onChange={onChange} placeholder="가나다" />
                 ))}

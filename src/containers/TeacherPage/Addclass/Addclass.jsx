@@ -45,19 +45,22 @@ function Addclass() {
             setLoading(true);
             console.log('ClassName : ', ClassName);
             console.log('ClassDate : ', ClassDate);
-            const response = await axios.post(
+            axios.post(
                 'https://runuptoolcloud22.paas-ta.org/class/teacher/new',{
                     headers:{
                         "Content-Type" : "application/json",
+                        'Authorization':localStorage.getItem('JWT')
                     },
                     widthCredentials: true,
                     c_name:ClassName,
-                    c_date:ClassDate
-                }
-            );
-            console.log(response.data);
-            console.log("성공");// 데이터는 response.data 안에 들어있습니다.
-            document.location.href = '/teacher/class-list'
+                    c_no:1,
+                    c_time:ClassDate
+                })
+                .then(res =>{
+                console.log(res.data);
+                console.log("성공");}// 데이터는 response.data 안에 들어있습니다.
+                //document.location.href = '/teacher/class-list'}
+            )
         } catch (e) {
             setError(e);
         }
@@ -98,8 +101,7 @@ function Addclass() {
                                     />
                         </div>
                 </div>
-                    <Buttons text={"추가하기"} onClick={fetchAddClass}>
-                    </Buttons>
+                    <Buttons text={"추가하기"} onClick={fetchAddClass}/>
             </form>
         </Block>
 

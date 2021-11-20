@@ -1,11 +1,8 @@
 import React from "react";
-
-const Td =({item,handleRemove, handleEdit}) =>{
+import { Link} from "react-router-dom";
+const Td =({item,handleRemove}) =>{
     const onRemove = () =>{
         handleRemove(item.id)
-    }
-    const onEdit = ()=>{
-        handleEdit(item);
     }
 
     return (
@@ -13,8 +10,11 @@ const Td =({item,handleRemove, handleEdit}) =>{
             <tr>
                 <td>{item.c_name}</td>
                 <td>{item.c_time}</td>
-                <td onClick={onEdit}>수정</td>
-                <td onClick={onRemove}>삭제</td>
+                <Link to={`/teacher/detail-class/${item.c_name}`}>
+                    <td >상세정보</td>
+                </Link>
+                    <td onClick={onRemove}>삭제</td>
+
             </tr>
         </>
     )

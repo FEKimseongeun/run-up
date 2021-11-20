@@ -16,8 +16,8 @@ import { UserOutlined } from '@ant-design/icons';
 import ReactDOM from 'react-dom';
 
 const Mainpage = ({match}) => {
-
     console.log(match.path)
+    const name = localStorage.getItem('userName')
     return <>
         <div className="mcontainer">
         <header>
@@ -27,10 +27,10 @@ const Mainpage = ({match}) => {
               <a href="/teacher/class-list">RUN-UP</a>
             </div>
             <div className="menuUserSection">
-                홍길동 선생님
+                {name} 선생님
                 <Avatar size="large" icon={<UserOutlined />} />
               <a href="/teacher/teacher-mypage">설정</a>
-              <Button type="primary">로그아웃</Button>
+              <Button type="primary" href='/login'>로그아웃</Button>
             </div>
           </div>
         </nav>

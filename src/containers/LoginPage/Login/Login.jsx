@@ -17,7 +17,7 @@ const Login = () => {
                 <div className= "mainpage-vertical-line" />
                 <Buttons link="/find-password" text={"비밀번호 찾기"} />
                 <div className= "mainpage-vertical-line" />
-                <Buttons link="login/signup" text={"회원가입"} />
+                <Buttons link="/login/signup" text={"회원가입"} />
             </div>
         </div>
     )

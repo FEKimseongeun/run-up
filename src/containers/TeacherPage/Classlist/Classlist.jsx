@@ -147,6 +147,8 @@ const Classlist= () => {
 
   const nextId=useRef(11);
 
+
+
   const fetchUsers = async () => {
     try {
       // 요청이 시작 할 때에는 error 와 users 를 초기화하고
@@ -154,17 +156,26 @@ const Classlist= () => {
       setUsers(null);
       // loading 상태를 true 로 바꿉니다.
       setLoading(true);
-      const response = await axios.get(
-          'https://runuptoolcloud22.paas-ta.org/class/teacher',{
-            headers: {
-              'Authorization': 'Bearer ' + localStorage.getItem("login-token"),
-            },
-          }
-      );
-      setInfo(response.data);
-      console.log(localStorage.getItem("login-token"))// 데이터는 response.data 안에 들어있습니다.
-    } catch (e) {
-      setError(e);
+      console.log(localStorage.getItem('JWT'))
+      axios.get("https://runuptoolcloud22.paas-ta.org/class/teacher" ,{
+        header: {
+          "Content-Type": `application/json`,
+          'Authorization':localStorage.getItem('JWT')
+        },
+        widthCredentials: true,
+      })
+          .then(res =>{
+            setInfo(res.data)
+            console.log(res.data)
+          })
+          .catch(ex=>{
+            console.log(" requset fail : " + ex);
+          })
+          .finally(()=>{console.log("login request end")}
+              //document.location.href = `/teacher/class-list`}
+          );
+    }catch(e){
+      console.log(e);
     }
 
       setLoading(false);
@@ -187,6 +198,7 @@ const Classlist= () => {
             c_name: data.c_name,
             c_no: data.c_no,
             c_time: data.c_time,
+
           } : row))
     } else {
       setInfo(info => info.concat(
@@ -197,6 +209,7 @@ const Classlist= () => {
           }
       ))
       nextId.current += 1;
+
     }
   }
 
@@ -285,7 +298,7 @@ const Classlist= () => {
               <th>수업시간</th>
             </tr>
           </thead>
-          <Tr info={info} handleRemove={handleRemove} handleEdit={handleEdit}/>
+          <Tr info={info} handleRemove={handleRemove} />
         </table>
       </div>
       {/*  <Table*/}

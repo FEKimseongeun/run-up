@@ -13,7 +13,15 @@ import {
 import {Link} from "react-router-dom";
 const { Title } = Typography;
 
+
+
 function StudentQuiz() {
+    const [users, setUsers] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [Quiz, SetQuiz] = useState("");
+    const [Answer, SetAnswer] = useState("");
+
     return (
         <div>
             <Block>

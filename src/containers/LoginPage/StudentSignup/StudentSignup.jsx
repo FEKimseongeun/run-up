@@ -69,6 +69,7 @@ const StudentSignup = () => {
             setLoading(true);
             console.log('ID : ', inputId);
             console.log('PW : ', inputPw);
+            localStorage.setItem("studentName",inputName);
             const response = await axios.post(
                 'https://runuptoolcloud22.paas-ta.org/student/signupStudent',{
                     headers:{
