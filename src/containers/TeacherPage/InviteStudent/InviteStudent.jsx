@@ -95,7 +95,7 @@ function InviteStudent() {
                     height: 400,
                     width: 500,
                     padding: '0 16px',
-                    margin:'2rem auto'
+                    margin:'5rem auto'
                     
                 }}
             >
@@ -104,9 +104,7 @@ function InviteStudent() {
                 </div>
                 <Buttons text={'초대하기'} onClick={fetchUsers}/>
                     <Input placeholder="이메일 입력" prefix={<UserOutlined />} style={{margin:'1rem auto'}} value={inputEmail1} onChange={handleEmail1}/>
-                    <Input placeholder="이메일 입력" prefix={<UserOutlined />}style={{margin:'1rem auto'}} value={inputEmail2} onChange={handleEmail2}/>
-                    <Input placeholder="이메일 입력" prefix={<UserOutlined />} style={{margin:'1rem auto'}} value={inputEmail3} onChange={handleEmail3}/>
-            </div>
+                     </div>
 
             </Block>
         </div>

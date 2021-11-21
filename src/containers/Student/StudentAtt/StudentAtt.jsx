@@ -38,7 +38,8 @@ function StudentAtt() {
                 <h3>월 | 오전 11시 ~ 오후 1시 / 화 | 오전 10시 ~ 오후 12시</h3>
                 <div style={{margin:"4rem auto"}}>
                     <img className="att-img" src={attImg} style={{marginLeft:"4rem", width:"400px"}}/>
-                        <Button onClick={showModal} type="default" shape="round" size="large" style={{width:"500px", height:"100px" ,backgroundColor:"#F2AA55", color:"white", marginLeft : "4rem", fontSize:"34px"}}>출석하기</Button>
+                        <Button onClick={showModal} type="default" shape="round" size="large" style={{width:"500px", height:"100px" ,backgroundColor:"#4374D9", color:"white", marginLeft : "4rem", fontSize:"34px"}}>수업 시작하기/출석 시작</Button>
+                    <Button onClick={showModal} type="default" shape="round" size="large" style={{width:"200px", height:"50px" ,backgroundColor:"#4374D9", color:"white", marginLeft : "4rem", fontSize:"18px"}}>수업 끝내기</Button>
                     {/*<Modal*/}
                     {/*    visible={visible}*/}
                     {/*    title="Title"*/}

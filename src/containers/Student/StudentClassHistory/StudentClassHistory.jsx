@@ -17,19 +17,19 @@ const data = [
     {
         key: "1",
         className: "2주차",
-        classTime: "화요일 1-3시 | 수요일 2-5시",
+        classTime: "5월 20일",
         classAtt:"x"
     },
     {
         key: "2",
-        className: "2주차",
-        classTime: "화요일 1-3시 | 수요일 2-5시",
-        classAtt:"x"
+        className: "3주차",
+        classTime: "5월 27일",
+        classAtt:"O"
     },
     {
         key: "3",
-        className: "2주차",
-        classTime: "화요일 1-3시 | 수요일 2-5시",
+        className: "4주차",
+        classTime: "5월 28일",
         classAtt:"x"
     }
 ];

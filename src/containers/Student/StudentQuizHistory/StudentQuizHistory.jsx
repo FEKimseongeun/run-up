@@ -16,22 +16,16 @@ const { Column } = Table;
 const data = [
     {
         key: "1",
-        className: "2주차",
-        classTime: "화요일 1-3시 | 수요일 2-5시",
+        className: "김성은",
+        classTime: "2",
         classAtt:"x"
     },
     {
         key: "2",
-        className: "2주차",
-        classTime: "화요일 1-3시 | 수요일 2-5시",
+        className: "홍길동",
+        classTime: "2",
         classAtt:"x"
     },
-    {
-        key: "3",
-        className: "2주차",
-        classTime: "화요일 1-3시 | 수요일 2-5시",
-        classAtt:"x"
-    }
 ];
 
 
@@ -39,13 +33,13 @@ function StudentQuizHistory() {
     return (
         <div>
             <Block>
-                <img className="stu-class-list" src={stu_quiz} style={{ width:"60px", float: 'left'}}/>
-                <Title >도덕</Title>
+                <h1 >도덕</h1>
+                <Title >퀴즈 문제 1번 : 1+1은? </Title>
                 <hr></hr>
                 <div style={{marginTop:'2rem'}}>
                     <Table dataSource={data}>
-                        <Column title="퀴즈" dataIndex="className" key="week" />
-                        <Column title="날짜" dataIndex="classTime" key="date" />
+                        <Column title="퀴즈 제출한 사람" dataIndex="className" key="week" />
+                        <Column title="입력 답" dataIndex="classTime" key="date" />
                     </Table>
                 </div>
             </Block>

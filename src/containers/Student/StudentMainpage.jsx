@@ -26,10 +26,10 @@ const StudentMainpage = ({match}) => {
               <a href="/student/s-classlist">RUN-UP</a>
             </div>
             <div className="menuUserSection">
-                {name} 학생
+                {name} 선생님
                 <Avatar size="large" icon={<UserOutlined />} />
               <a href="/student-mypage">설정</a>
-              <Button type="default" style={{backgroundColor:"#F2AA55", color:"white"}}>로그아웃</Button>
+                <Button type="primary" href='/login'>로그아웃</Button>
             </div>
           </div>
         </nav>

@@ -23,7 +23,10 @@ function StudentClassList() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const data = [
-
+        {
+            age:'도덕 1반',
+            address: '목 12:00~13:00'
+        }
     ];
 
     const fetchUsers = async () => {
