@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Link } from 'react-router-dom'
 import Block from "../../../components/Block/Block"
 import "antd/dist/antd.css";
@@ -10,29 +10,57 @@ import {
     Button,
     Typography,
 } from "antd";
+import axios from "axios";
 const { Title } = Typography;
 const { Column } = Table;
 
-const data = [
-    {
-        key: "1",
-        className: "도덕",
-        classTime: "화요일 1-3시 | 수요일 2-5시"
-    },
-    {
-        key: "2",
-        className: "수학",
-        classTime: "화요일 1-3시 | 수요일 2-5시"
-    },
-    {
-        key: "3",
-        className: "과학",
-        classTime: "화요일 1-3시 | 수요일 2-5시"
-    }
-];
-
 
 function StudentClassList() {
+    const [info, setInfo]=useState([]);
+    const [selected,setSelected] =useState('');
+    const [modalOn, setModalOn] = useState(false);
+    const [users, setUsers] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const data = [
+
+    ];
+
+    const fetchUsers = async () => {
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setUsers(null);
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+            console.log(localStorage.getItem('JWT'))
+            axios.get("https://runuptoolcloud22.paas-ta.org/class/student" ,{
+                header: {
+                    "Content-Type": `application/json`,
+                    'Authorization':localStorage.getItem('JWT')
+                },
+                widthCredentials: true,
+            })
+                .then(res =>{
+                    setInfo(res.data)
+                    console.log(res.data)
+                })
+                .catch(ex=>{
+                    console.log(" requset fail : " + ex);
+                })
+                .finally(()=>{console.log("login request end")}
+                    //document.location.href = `/teacher/class-list`}
+                );
+        }catch(e){
+            console.log(e);
+        }
+
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
 
 
     return (

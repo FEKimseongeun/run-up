@@ -7,13 +7,13 @@ const Td =({item,handleRemove}) =>{
 
     return (
         <>
-            <tr>
-                <td>{item.c_name}</td>
-                <td>{item.c_time}</td>
+            <tr style={{border:'solid 1px #F6AD55', padding:'5px' , fontSize:'20px',}}>
+                <td style={{padding:'5px', width:'170px'}}>{item.c_name}</td>
+                <td style={{padding:'5px', width:'170px'}}>{item.c_time}</td>
                 <Link to={`/teacher/detail-class/${item.c_name}`}>
-                    <td >수정</td>
+                    <td style={{padding:'5px', width:'170px'}}>수업 상세</td>
                 </Link>
-                    <td onClick={onRemove}>삭제</td>
+                    <td onClick={onRemove} style={{padding:'5px', width:'170px'}}>삭제</td>
 
             </tr>
         </>

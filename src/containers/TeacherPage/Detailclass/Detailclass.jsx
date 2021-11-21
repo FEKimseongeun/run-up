@@ -123,6 +123,11 @@ function Detailclass(props) {
   useEffect(() => {
     fetchUsers();
   }, []);
+
+  const handleRemove = (id) => {
+    setInfo(info => info.filter(item => item.id!==id));
+  }
+
   const att_name=new Array(20)
 
   const originData = [
@@ -146,6 +151,7 @@ function Detailclass(props) {
 
   const edit = (record) => {
     form.setFieldsValue({
+      q_no: "",
       q_ques: "",
       q_ans: "",
       ...record
@@ -330,22 +336,18 @@ function Detailclass(props) {
               {/*  </thead>*/}
               {/*  <Tr info={info} handleRemove={handleRemove} />*/}
               {/*</table>*/}
-            <Form form={form} component={false}>
-              <Table
-                  components={{
-                    body: {
-                      cell: EditableCell
-                    }
-                  }}
-                  bordered
-                  dataSource={data}
-                  columns={mergedColumns}
-                  rowClassName="editable-row"
-                  pagination={{
-                    onChange: cancel
-                  }}
-              />
-            </Form>
+              <table style={{borderCollapse: 'separate', borderSpacing: '15px', marginLeft:'30%'}}>
+                <thead style={{justifyContent:"space-between", fontSize:'20px'}}>
+                <tr >
+                  <th>퀴즈 번호</th>
+                  <th>문제</th>
+                  <th>답</th>
+                  
+                </tr>
+
+                </thead>
+                <Tr info={info} handleRemove={handleRemove} />
+              </table>
             </div>
     </TabPane>
       </Tabs>

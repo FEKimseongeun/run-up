@@ -29,9 +29,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-
-  "proxy": "https://runuptoolcloud22.paas-ta.org",
-
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -6,13 +6,6 @@ import LoginMainpage from "./containers/LoginPage/LoginMainpage";
 
 const App = () => {
     const [message, setMessage] = useState("");
-    useEffect(() => {
-        fetch('https://runuptoolcloud22.paas-ta.org')
-            .then(response => response.text())
-            .then(message => {
-                setMessage(message);
-            });
-    },[])
 
     return (
     <Switch>

@@ -3,7 +3,7 @@ import Td from './Td';
 
 const Tr =({info, handleRemove}) => {
     return (
-        <tbody>
+        <tbody >
         {
             info.map(item => {
                 return (

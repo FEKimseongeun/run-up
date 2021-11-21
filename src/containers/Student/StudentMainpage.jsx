@@ -15,7 +15,7 @@ import ReactDOM from 'react-dom';
 import InviteStudent from "../TeacherPage/InviteStudent/InviteStudent";
 
 const StudentMainpage = ({match}) => {
-
+    const name = localStorage.getItem('studentName')
     console.log(match.path)
     return <>
         <div className="mainpage-container">
@@ -26,7 +26,7 @@ const StudentMainpage = ({match}) => {
               <a href="/student/s-classlist">RUN-UP</a>
             </div>
             <div className="menuUserSection">
-                홍길동 선생님
+                {name} 학생
                 <Avatar size="large" icon={<UserOutlined />} />
               <a href="/student-mypage">설정</a>
               <Button type="default" style={{backgroundColor:"#F2AA55", color:"white"}}>로그아웃</Button>

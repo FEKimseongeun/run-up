@@ -206,12 +206,13 @@ const Classlist= () => {
       <hr></hr>
       {/*<Button type="primary" onClick={tableApi}>새로고침</Button>*/}
       <div style={{marginTop:'2rem'}}>
-        <table>
-          <thead style={{justifyContent:"space-between"}}>
-            <tr>
+        <table style={{borderCollapse: 'separate', borderSpacing: '8px', marginLeft:'220px'}}>
+          <thead style={{justifyContent:"space-between", fontSize:'20px'}}>
+            <tr >
               <th>과목/반</th>
               <th>수업시간</th>
             </tr>
+
           </thead>
           <Tr info={info} handleRemove={handleRemove} />
         </table>

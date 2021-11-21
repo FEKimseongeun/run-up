@@ -58,8 +58,8 @@ function Addclass() {
                 })
                 .then(res =>{
                 console.log(res.data);
-                console.log("성공");}// 데이터는 response.data 안에 들어있습니다.
-                //document.location.href = '/teacher/class-list'}
+                console.log("성공");// 데이터는 response.data 안에 들어있습니다.
+                document.location.href = '/teacher/class-list'}
             )
         } catch (e) {
             setError(e);
